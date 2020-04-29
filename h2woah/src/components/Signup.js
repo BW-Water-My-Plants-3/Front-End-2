@@ -3,7 +3,27 @@ import * as Yup from "yup";
 import axios from "axios"
 import Login from './Login';
 import { Link } from 'react-router-dom';
+import {Button} from "reactstrap"
+import styled from "styled-components"
 
+
+const WrapperDiv = styled.div`
+    font-size:4em;
+    background-color: green;
+    display:flex;
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    
+    flex-direction:column;
+    
+    `;
+const loginDiv = styled.div`
+width: 200px;
+height: 200px;
+background-color: gray;
+padding:5%
+`;
 
 const formSchema = Yup.object().shape({
 username: 
@@ -101,9 +121,9 @@ const Signup = props =>{
     };
 
     return (
-        <div id="form">
+        <WrapperDiv>
 
-            <form onSubmit={formSubmit}>
+            <form onSubmit={formSubmit} className={loginDiv}>
                 <label htmlFor="username">
                     Username
                 <input id="username" type="text" name="username" value={formState.username} onChange={inputChange} />
@@ -114,9 +134,6 @@ const Signup = props =>{
                 <input id="phoneNumber" type="phoneNumber" name="phoneNumber" value={formState.phoneNumber} onChange={inputChange} />
                 {errors.phoneNumber.length > 0 ? (<p className="error"> {errors.phoneNumber}</p>) : null}
                 </label>
-                <label htmlFor="role">
-                    Role
-                </label>
                 <label htmlFor="password">
                     Password
                 <input id="password" type="password" name="password" value={formState.password} onChange={inputChange} />
@@ -125,10 +142,11 @@ const Signup = props =>{
                 
                 <button disabled={buttonDisabled}>Submit</button>
             </form>
-            <div>
+            
+            <loginDiv>
                 Already have an Account?
-                <Link to='/login'>Login</Link>
-            </div>
+                <Button color="success"><Link to='/login'>Login</Link></Button>
+            </loginDiv>
             {/* <div>
                 <h1>Users</h1>
                 {users.map(element => {
@@ -137,7 +155,7 @@ const Signup = props =>{
                     );
                 })}
             </div> */}
-        </div>
+        </WrapperDiv>
     );
 }
 
