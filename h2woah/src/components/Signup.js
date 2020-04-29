@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import * as Yup from "yup";
 import axios from "axios"
 
@@ -6,7 +6,7 @@ const formSchema = Yup.object().shape({
 username: 
     Yup
     .string()
-    .required('Please enter your name'),
+    .required('Please enter your username'),
 
     phoneNumber: 
     Yup
@@ -84,7 +84,7 @@ const Signup = props =>{
         axios.post("https://h2omyplants.herokuapp.com/api/signup", formState)
             .then(res => {
                 setPost(res.data);
-                console.log("success", post);
+                console.log("success", res.data);
                 setUsers([...users, res.data])
                 setFormState({
                     name: "",
@@ -122,14 +122,14 @@ const Signup = props =>{
                 
                 <button disabled={buttonDisabled}>Submit</button>
             </form>
-            <div>
+            {/* <div>
                 <h1>Users</h1>
                 {users.map(element => {
                     return (
                         <div>Name: {element.username} Email: {element.email}</div>
                     );
                 })}
-            </div>
+            </div> */}
         </div>
     );
 }
