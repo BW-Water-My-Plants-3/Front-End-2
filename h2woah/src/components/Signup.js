@@ -1,6 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import * as Yup from "yup";
 import axios from "axios"
+import Login from './Login';
+import { Link } from 'react-router-dom';
+
 
 const formSchema = Yup.object().shape({
 username: 
@@ -84,7 +87,7 @@ const Signup = props =>{
         axios.post("https://h2omyplants.herokuapp.com/api/signup", formState)
             .then(res => {
                 setPost(res.data);
-                console.log("success", post);
+                console.log("success", res.data);
                 setUsers([...users, res.data])
                 setFormState({
                     name: "",
@@ -102,12 +105,12 @@ const Signup = props =>{
 
             <form onSubmit={formSubmit}>
                 <label htmlFor="username">
-                    Name
+                    Username
                 <input id="username" type="text" name="username" value={formState.username} onChange={inputChange} />
                 {errors.username.length > 0 ? (<p>{errors.name}</p>):null}
                 </label>
                 <label htmlFor="phoneNumber">
-                    phoneNumber
+                    Phone Number
                 <input id="phoneNumber" type="phoneNumber" name="phoneNumber" value={formState.phoneNumber} onChange={inputChange} />
                 {errors.phoneNumber.length > 0 ? (<p className="error"> {errors.phoneNumber}</p>) : null}
                 </label>
@@ -123,13 +126,17 @@ const Signup = props =>{
                 <button disabled={buttonDisabled}>Submit</button>
             </form>
             <div>
+                Already have an Account?
+                <Link to='/login'>Login</Link>
+            </div>
+            {/* <div>
                 <h1>Users</h1>
                 {users.map(element => {
                     return (
                         <div>Name: {element.username} Email: {element.email}</div>
                     );
                 })}
-            </div>
+            </div> */}
         </div>
     );
 }
