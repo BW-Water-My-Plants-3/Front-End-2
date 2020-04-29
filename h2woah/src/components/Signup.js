@@ -6,7 +6,7 @@ const formSchema = Yup.object().shape({
 username: 
     Yup
     .string()
-    .required('Please enter your name'),
+    .required('Please enter your username'),
 
     phoneNumber: 
     Yup
