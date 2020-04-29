@@ -16,7 +16,7 @@ function App() {
     <Router>
       <div className="App">
         {/* put components in here */}
-        <Route exact path ="/signup" component={Signup} />
+        <Route exact path ="/" component={Signup} />
         <Route exact path ="/login" component={Login} />
         <Route path="/add-plant" render={props=> <AddPlantForm {...props} plantList={plantList} setPlantList={setPlantList}/>}/>
         <PrivateRoute exact path="/homepage" component={HomePage} />
