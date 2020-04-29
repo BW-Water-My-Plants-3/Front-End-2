@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
 
 const initialPlant = {
-    // id: "",
     nickname: "",
     species: "",
     h2oFrequency: "",
