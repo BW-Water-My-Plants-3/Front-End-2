@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import * as Yup from "yup";
 import axios from "axios"
 
@@ -122,14 +122,14 @@ const Signup = props =>{
                 
                 <button disabled={buttonDisabled}>Submit</button>
             </form>
-            <div>
+            {/* <div>
                 <h1>Users</h1>
                 {users.map(element => {
                     return (
                         <div>Name: {element.username} Email: {element.email}</div>
                     );
                 })}
-            </div>
+            </div> */}
         </div>
     );
 }
