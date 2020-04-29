@@ -9,15 +9,8 @@ import Signup from './components/Signup';
 import AddPlantForm from "./components/AddPlantForm"
 
 function App() {
-  const [plantList, setPlantList] = useState({
-    plant: {
-      id: "",
-      nickname: "",
-      species: "",
-      h2oFrequency: "",
-      imageURL: ""
-    }
-  })
+  const [plantList, setPlantList] = useState([])
+  // console.log({setPlantList})
 
   return (
     <Router>
@@ -25,7 +18,7 @@ function App() {
         {/* put components in here */}
         <Route exact path ="/signup" component={Signup} />
         <Route exact path ="/login" component={Login} />
-        <PrivateRoute path="/add-plant" component={AddPlantForm} setPlantList={setPlantList} plantList={plantList}/>
+        <Route path="/add-plant" render={props=> <AddPlantForm {...props} plantList={plantList} setPlantList={setPlantList}/>}/>
         <PrivateRoute exact path="/homepage" component={HomePage} />
       </div>
     </Router>

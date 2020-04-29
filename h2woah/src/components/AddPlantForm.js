@@ -15,6 +15,7 @@ const initialPlant = {
 const AddPlantForm = ({plantList, setPlantList}) => {
     const [plant, setPlant] = useState(initialPlant)
     const {push} = useHistory()
+    console.log({plantList})
 
     //changeHandler
     const changeHandler = e => {
@@ -27,7 +28,6 @@ const AddPlantForm = ({plantList, setPlantList}) => {
 
     //addNewPlant onSubmit-->POST
     const addNewPlant = e => {
-        // console.log({plant})
         e.preventDefault()
         axiosWithAuth()
         .post("/api/plants", plant)
@@ -54,7 +54,7 @@ const AddPlantForm = ({plantList, setPlantList}) => {
                         value={plant.nickname}
                         onChange={changeHandler}
                         /></label> &nbsp;
-                     <label htmlFor="species">Species: (optional) &nbsp;
+                     <label htmlFor="species">Species: &nbsp;
                         <input 
                         id="species"
                         name="species"
