@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import * as Yup from "yup";
 import axios from "axios"
 import Login from './Login';
@@ -29,7 +29,7 @@ const formSchema = Yup.object().shape({
 username: 
     Yup
     .string()
-    .required('Please enter your name'),
+    .required('Please enter your username'),
 
     phoneNumber: 
     Yup
@@ -142,11 +142,13 @@ const Signup = props =>{
                 
                 <button disabled={buttonDisabled}>Submit</button>
             </form>
+
             
             <loginDiv>
                 Already have an Account?
                 <Button color="success"><Link to='/login'>Login</Link></Button>
             </loginDiv>
+
             {/* <div>
                 <h1>Users</h1>
                 {users.map(element => {
@@ -155,7 +157,10 @@ const Signup = props =>{
                     );
                 })}
             </div> */}
+
         </WrapperDiv>
+
+        </div>
     );
 }
 
