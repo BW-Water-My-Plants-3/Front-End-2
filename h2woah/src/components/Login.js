@@ -24,7 +24,7 @@ class Login extends React.Component{
             .post("/api/login", this.state.credentials)
             .then(res => {
                 console.log({res})
-                localStorage.setItem('token', JSON.stringify(res.data))
+                localStorage.setItem('token', JSON.stringify(res.data.token))
                 this.props.history.push("/homepage")
             })
             .catch(err => {

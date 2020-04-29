@@ -25,7 +25,7 @@ function App() {
         {/* put components in here */}
         <Route exact path ="/signup" component={Signup} />
         <Route exact path ="/login" component={Login} />
-        <Route path="/add-plant" render={props => <AddPlantForm {...props} plantList={plantList}/>}/>
+        <PrivateRoute path="/add-plant" component={AddPlantForm} setPlantList={setPlantList} plantList={plantList}/>
         <PrivateRoute exact path="/homepage" component={HomePage} />
       </div>
     </Router>

@@ -6,11 +6,11 @@ import EditForm from "./EditForm"
 import EditProfile from "./EditProfile"
 
 const HomePage = () => {
-    const [plantList, setPlantList] = useState()
+    // const [plantList, setPlantList] = useState()
     const {push} = useHistory()
     return(
         <>
-            <Route path="/update-plant/:id" render={props => <EditForm {...props} plantList={plantList}/>} />
+            {/* <Route path="/update-plant/:id" render={props => <EditForm {...props} plantList={plantList}/>} /> */}
             <Route path="/update-profile/:id" component={EditProfile}/>
             {/* <Route path="/add-plant" component={AddPlantForm}/> */}
             {/* add onClick function to go to Edit PLANT form */}

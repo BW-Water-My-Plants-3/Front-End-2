@@ -84,7 +84,7 @@ const Signup = props =>{
         axios.post("https://h2omyplants.herokuapp.com/api/signup", formState)
             .then(res => {
                 setPost(res.data);
-                console.log("success", post);
+                console.log("success", res.data);
                 setUsers([...users, res.data])
                 setFormState({
                     name: "",
