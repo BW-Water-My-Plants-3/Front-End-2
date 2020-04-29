@@ -3,16 +3,16 @@ import * as Yup from "yup";
 import axios from "axios"
 
 const formSchema = Yup.object().shape({
-userName: 
+username: 
     Yup
     .string()
     .required('Please enter your name'),
 
-    phone: 
+    phoneNumber: 
     Yup
     .string()
-    .required('Please enter your phone number')
-    .length(10,'Please enter a VALID phone number in the following format 1234567890'),
+    .required('Please enter your phoneNumber number')
+    .length(10,'Please enter a VALID phoneNumber number in the following format 1234567890'),
 
     password: 
     Yup
@@ -26,15 +26,15 @@ userName:
 const Signup = props =>{
 
     const [formState, setFormState] = useState({
-        userName: "",
-        phone: "",
+        username: "",
+        phoneNumber: "",
         password: ""
         
     })
    
     const [errors, setErrors] = useState({
-        userName: "",
-        phone: "",
+        username: "",
+        phoneNumber: "",
         password: ""
         
     })
@@ -88,7 +88,7 @@ const Signup = props =>{
                 setUsers([...users, res.data])
                 setFormState({
                     name: "",
-                    phone: "",
+                    phoneNumber: "",
                     password: "",
                 });
             })
@@ -101,15 +101,15 @@ const Signup = props =>{
         <div id="form">
 
             <form onSubmit={formSubmit}>
-                <label htmlFor="userName">
+                <label htmlFor="username">
                     Name
-                <input id="userName" type="text" name="userName" value={formState.userName} onChange={inputChange} />
-                {errors.userName.length > 0 ? (<p>{errors.name}</p>):null}
+                <input id="username" type="text" name="username" value={formState.username} onChange={inputChange} />
+                {errors.username.length > 0 ? (<p>{errors.name}</p>):null}
                 </label>
-                <label htmlFor="phone">
-                    Phone
-                <input id="phone" type="phone" name="phone" value={formState.phone} onChange={inputChange} />
-                {errors.phone.length > 0 ? (<p className="error"> {errors.phone}</p>) : null}
+                <label htmlFor="phoneNumber">
+                    phoneNumber
+                <input id="phoneNumber" type="phoneNumber" name="phoneNumber" value={formState.phoneNumber} onChange={inputChange} />
+                {errors.phoneNumber.length > 0 ? (<p className="error"> {errors.phoneNumber}</p>) : null}
                 </label>
                 <label htmlFor="role">
                     Role
@@ -126,7 +126,7 @@ const Signup = props =>{
                 <h1>Users</h1>
                 {users.map(element => {
                     return (
-                        <div>Name: {element.userName} Email: {element.email}</div>
+                        <div>Name: {element.username} Email: {element.email}</div>
                     );
                 })}
             </div>
