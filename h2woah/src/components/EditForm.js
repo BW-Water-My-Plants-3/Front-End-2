@@ -12,7 +12,6 @@ const EditForm = ({plant, setPlant}) => {
         axiosWithAuth()
             .get(`/api/plants/${id}`)
             .then(res => {
-                console.log("GET RES", res)
                 setPlant(res.data)
             })
             .catch(err => {
@@ -35,7 +34,6 @@ const EditForm = ({plant, setPlant}) => {
         axiosWithAuth()
             .put(`/api/plants/${id}`, plant)
             .then(res => {
-                console.log("UPDATE PLANT RES", res)
                 setPlant(plant)
                 push(`/homepage`)
             })
@@ -49,7 +47,6 @@ const EditForm = ({plant, setPlant}) => {
         axiosWithAuth()
             .delete(`/api/plants/${id}`)
             .then(res => {
-                console.log("DELETE RES", res)
                 setPlant(plant)
                 push(`/homepage`)
             })
