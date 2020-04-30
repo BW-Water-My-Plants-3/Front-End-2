@@ -1,10 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import * as Yup from "yup";
 import axios from "axios"
-import Login from './Login';
 import { Link } from 'react-router-dom';
-import {Button} from "reactstrap"
-import styled from "styled-components"
 import "../index.css"
 
 
@@ -32,7 +29,6 @@ username:
 })
 
 const Signup = props =>{
-
     const [formState, setFormState] = useState({
         username: "",
         phoneNumber: "",
@@ -126,6 +122,12 @@ const Signup = props =>{
                 </label>
                 
                 <button disabled={buttonDisabled} className="navButton">Submit</button>
+                <p className="success-message">{users.map(element => {
+                    console.log({element})
+                    return (
+                    <div>Success: {element.message}! Go to <Link onClick={() => props.history.push("/login")}>Login</Link></div>
+                    );
+                })}</p>
             </form>
 
             
@@ -133,15 +135,6 @@ const Signup = props =>{
                 Already have an Account?
                 <button className="navButton"><Link to='/login'>Login</Link></button>
             </div>
-
-            {/* <div>
-                <h1>Users</h1>
-                {users.map(element => {
-                    return (
-                        <div>Name: {element.username} Email: {element.email}</div>
-                    );
-                })}
-            </div> */}
         </div>
 
     );
