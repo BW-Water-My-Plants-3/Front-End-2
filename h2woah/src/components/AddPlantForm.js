@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import { useHistory } from "react-router-dom"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
+import "../index.css"
 
 const initialPlant = {
     // id: "",
@@ -43,9 +44,9 @@ const AddPlantForm = ({plantList, setPlantList}) => {
 
     return(
         <>
-        <h2>Add Plant</h2>
-            <p>Fill out the updated information</p>
-            <div className="form">
+        <h2 id="homecar">Add Plant</h2>
+            <p class="card">Fill out the updated information</p>
+            <div className="card">
                 <form onSubmit={addNewPlant}> 
                     <label htmlFor="nickname">Nickname: &nbsp;
                         <input 
@@ -63,10 +64,10 @@ const AddPlantForm = ({plantList, setPlantList}) => {
                         /></label> &nbsp;
                     <label htmlFor="h2oFrequency">Water Frequency: &nbsp;
                         <select id="h2oFrequency" name="h2oFrequency" onChange={changeHandler}>
-                            <option value="low" >Once a month</option>
-                            <option value="medium" >Once a week</option>
-                            <option value="medium-high" >Once a day</option>
-                            <option value="high" >Twice a day</option>
+                            <option value="Once a month" >Once a month</option>
+                            <option value="Once a week" >Once a week</option>
+                            <option value="Once a day" >Once a day</option>
+                            <option value="Twice a day" >Twice a day</option>
                         </select></label>&nbsp;
                     <label htmlFor="image">Image: &nbsp;
                         <input 

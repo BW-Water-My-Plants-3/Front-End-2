@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {useHistory, Route} from "react-router-dom"
-
+import "../index.css"
 //Components
 import EditForm from "./EditForm"
 import EditProfile from "./EditProfile"

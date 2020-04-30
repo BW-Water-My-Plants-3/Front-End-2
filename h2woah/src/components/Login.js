@@ -1,5 +1,6 @@
 import React from "react"
 import {axiosWithAuth} from "../utils/axiosWithAuth"
+import { Link } from 'react-router-dom';
 import "../index.css"
 class Login extends React.Component{
     state = {
@@ -59,6 +60,10 @@ class Login extends React.Component{
                 </form>
             </div>
         </div>
+        <div id="signUpForm">
+                Don't Have an Account yet?
+                <button className="navButton"><Link to='/'>Signup</Link></button>
+            </div>
         </>
         )
     }
