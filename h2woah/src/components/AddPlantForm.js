@@ -32,7 +32,7 @@ const AddPlantForm = ({plantList, setPlantList}) => {
         .post("/api/plants", plant)
         .then(res => {
             console.log({res})
-            setPlantList(plant)
+            setPlantList(plantList)
             push("/homepage")
         })
         .catch(err => {
