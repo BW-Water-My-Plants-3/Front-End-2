@@ -1,6 +1,6 @@
 import React from "react"
 import {axiosWithAuth} from "../utils/axiosWithAuth"
-
+import "../index.css"
 class Login extends React.Component{
     state = {
         credentials: {
@@ -35,6 +35,7 @@ class Login extends React.Component{
     render(){
         return(
         <>
+        <div id="loginForm">
             <h2>Welcome Back!</h2>
             <p>Log into your account</p>
             <div className="login form">
@@ -57,6 +58,7 @@ class Login extends React.Component{
                     <button>Log in</button>
                 </form>
             </div>
+        </div>
         </>
         )
     }
