@@ -4,9 +4,10 @@ import {useHistory, Route} from "react-router-dom"
 //Components
 import EditForm from "./EditForm"
 import EditProfile from "./EditProfile"
+import AddPlantForm from "./AddPlantForm"
 
 const HomePage = () => {
-    // const [plantList, setPlantList] = useState()
+     const [plantList, setPlantList] = useState()
     const {push} = useHistory()
     return(
 
