@@ -16,7 +16,7 @@ const initialPlant = {
   nickname: "",
   species: "",
   h2oFrequency: "",
-  image: ""
+  image: null
 }
 
 function App() {
