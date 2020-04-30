@@ -1,6 +1,5 @@
 import React, {useContext, useEffect} from "react"
 import {useHistory} from "react-router-dom"
-import "../index.css"
 
 //Contexts
 import {HomeContext} from "../contexts/HomeContext"
