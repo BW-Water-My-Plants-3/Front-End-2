@@ -1,6 +1,8 @@
 import React from "react"
 import {axiosWithAuth} from "../utils/axiosWithAuth"
+import {Link} from "react-router-dom"
 import "../index.css"
+
 class Login extends React.Component{
     state = {
         credentials: {
@@ -57,6 +59,7 @@ class Login extends React.Component{
                         /></label>&nbsp;
                     <button>Log in</button>
                 </form>
+                <p>Don't have an Account? <Link to='/'>Sign Up</Link> here!</p>
             </div>
         </div>
         </>

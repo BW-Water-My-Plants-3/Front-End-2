@@ -1,33 +1,49 @@
-import React, {useState} from "react"
-import {useHistory, Route} from "react-router-dom"
+import React, {useContext, useEffect} from "react"
+import {useHistory} from "react-router-dom"
 
-//Components
-import EditForm from "./EditForm"
-import EditProfile from "./EditProfile"
-import AddPlantForm from "./AddPlantForm"
+//Contexts
+import {HomeContext} from "../contexts/HomeContext"
+import { axiosWithAuth } from "../utils/axiosWithAuth"
 
 const HomePage = () => {
-     const [plantList, setPlantList] = useState()
+    const {plantList, setPlantList} = useContext(HomeContext)
     const {push} = useHistory()
+
+
+    useEffect(() => {
+        axiosWithAuth()
+            .get("/api/plants")
+            .then(res => {
+                setPlantList(res.data)
+            })
+            .catch(err => {
+                console.log("useEffect err", err)
+            })
+    }, [])
+
     return(
-
-        <div>
-        <div>
-            <img></img>
-        </div>
-            <div>
-                <Route path="/update-plant/:id" render={props => <EditForm {...props} plantList={plantList}/>} />
-            </div>
-            <div>
-                <Route path="/update-profile/:id" component={EditProfile}/>
-            </div>
-            <div>
-                <Route path="/add-plant" component={AddPlantForm}/>
-            </div>
+        <>
+            <header>
+                <h2>Water My Plants</h2>
+                <p>My Plants</p>
+                {/* <i className="fas fa-user"></i> */}
+                <button onClick={() => push("/login")}>Log out</button>
+            </header>
             
-
-            <button onClick={() => push("/add-plant")}>Add Plant</button>
-        </div>
+            <div>
+                <button onClick={() => push("/add-plant")}>Add Plant</button>
+                <p>{plantList && plantList.map(showPlant => {
+                    return(
+                    <div className="card" key={showPlant.plant}>
+                        <p>Nickname: {showPlant.nickname}</p>
+                        <p>Species: {showPlant.species}</p> 
+                        <p>Water Me: {showPlant.h2oFrequency}</p>
+                        <button onClick={() => push(`/update-plant/${showPlant.id}`)}>Update</button>
+                    </div>
+                    )
+                })}</p>
+            </div>
+        </>
     )
 }
 

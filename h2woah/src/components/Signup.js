@@ -142,10 +142,8 @@ const Signup = props =>{
                     );
                 })}
             </div> */}
-
         </div>
 
-       
     );
 }
 

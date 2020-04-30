@@ -2,20 +2,8 @@ import React, {useState, useEffect} from "react"
 import { useHistory } from "react-router-dom"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
 
-const initialPlant = {
-    // id: "",
-    nickname: "",
-    species: "",
-    h2oFrequency: "",
-    image: ""
-}
-
-//props brought in: plantList
-
-const AddPlantForm = ({plantList, setPlantList}) => {
-    const [plant, setPlant] = useState(initialPlant)
+const AddPlantForm = ({plantList, setPlantList, plant, setPlant}) => {
     const {push} = useHistory()
-    console.log({plantList})
 
     //changeHandler
     const changeHandler = e => {
@@ -32,8 +20,7 @@ const AddPlantForm = ({plantList, setPlantList}) => {
         axiosWithAuth()
         .post("/api/plants", plant)
         .then(res => {
-            console.log({res})
-            setPlantList(plant)
+            setPlantList(plantList)
             push("/homepage")
         })
         .catch(err => {
@@ -63,10 +50,10 @@ const AddPlantForm = ({plantList, setPlantList}) => {
                         /></label> &nbsp;
                     <label htmlFor="h2oFrequency">Water Frequency: &nbsp;
                         <select id="h2oFrequency" name="h2oFrequency" onChange={changeHandler}>
-                            <option value="low" >Once a month</option>
-                            <option value="medium" >Once a week</option>
-                            <option value="medium-high" >Once a day</option>
-                            <option value="high" >Twice a day</option>
+                            <option value="Once a month" >Once a month</option>
+                            <option value="Once a week" >Once a week</option>
+                            <option value="Once a day" >Once a day</option>
+                            <option value="Twice a day" >Twice a day</option>
                         </select></label>&nbsp;
                     <label htmlFor="image">Image: &nbsp;
                         <input 
