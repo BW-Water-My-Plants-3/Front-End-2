@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useEffect} from "react"
 import {useParams, useHistory} from "react-router-dom"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
 
@@ -12,7 +12,6 @@ const EditForm = ({plant, setPlant}) => {
         axiosWithAuth()
             .get(`/api/plants/${id}`)
             .then(res => {
-                console.log("GET RES", res)
                 setPlant(res.data)
             })
             .catch(err => {
@@ -22,7 +21,7 @@ const EditForm = ({plant, setPlant}) => {
 
     //changeHandler
     const changeHandler = e => {
-        e.persist()
+        e.preventDefault()
         setPlant({
             ...plant,
             [e.target.name]: e.target.value
@@ -35,7 +34,6 @@ const EditForm = ({plant, setPlant}) => {
         axiosWithAuth()
             .put(`/api/plants/${id}`, plant)
             .then(res => {
-                console.log("UPDATE PLANT RES", res)
                 setPlant(plant)
                 push(`/homepage`)
             })
@@ -49,7 +47,6 @@ const EditForm = ({plant, setPlant}) => {
         axiosWithAuth()
             .delete(`/api/plants/${id}`)
             .then(res => {
-                console.log("DELETE RES", res)
                 setPlant(plant)
                 push(`/homepage`)
             })
@@ -80,18 +77,18 @@ const EditForm = ({plant, setPlant}) => {
                         /></label> &nbsp;
                     <label htmlFor="h2oFrequency">Water Frequency: &nbsp;
                         <select id="h2oFrequency" name="h2oFrequency">
-                            <option value="low" >Once a month</option>
-                            <option value="medium" >Once a week</option>
-                            <option value="medium-high" >Once a day</option>
-                            <option value="high" >Twice a day</option>
+                            <option value="Once a month" >Once a month</option>
+                            <option value="Once a week" >Once a week</option>
+                            <option value="Once a day" >Once a day</option>
+                            <option value="Twice a day" >Twice a day</option>
                         </select>
                     </label> &nbsp;
-                    <label htmlFor="imageURL">Image URL: &nbsp;
+                    <label htmlFor="image">Image URL: &nbsp;
                         <input 
                         type="string"
-                        id="imageURL"
-                        name="imageURL"
-                        value={plant.imageURL}
+                        id="image"
+                        name="image"
+                        value={plant.image}
                         onChange={changeHandler}
                         /></label> &nbsp;
                     <button>Save</button>
