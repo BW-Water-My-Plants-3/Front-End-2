@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from "react"
-import {useHistory, useParams} from "react-router-dom"
+import {useHistory} from "react-router-dom"
 
 //Contexts
 import {HomeContext} from "../contexts/HomeContext"
@@ -9,11 +9,12 @@ const HomePage = () => {
     const {plantList, setPlantList} = useContext(HomeContext)
     const {push} = useHistory()
 
+
     useEffect(() => {
         axiosWithAuth()
             .get("/api/plants")
             .then(res => {
-                console.log("useEffect res", res)
+                // console.log("useEffect res", res)
                 setPlantList(res.data)
             })
             .catch(err => {
@@ -39,7 +40,6 @@ const HomePage = () => {
                         <p>Species: {showPlant.species}</p> 
                         <p>Water Me: {showPlant.h2oFrequency}</p>
                         <button onClick={() => push(`/update-plant/${showPlant.id}`)}>Update</button>
-                        <button>Delete</button>
                     </div>
                     )
                 })}</p>

@@ -6,7 +6,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth"
 const EditForm = ({plant, setPlant}) => {
     const {push} = useHistory()
     const {id} = useParams()
-    console.log({id})
+    // console.log({id})
 
     //useEffect for initial load for plant data--GET
     useEffect(() => {
@@ -42,6 +42,20 @@ const EditForm = ({plant, setPlant}) => {
             })
             .catch(err => {
                 console.log("UPDATE PLANT ERR", err)
+            })
+    }
+
+    const deletePlant = e => {
+        e.preventDefault()
+        axiosWithAuth()
+            .delete(`/api/plants/${id}`) //${} WHAT IS THE ID??
+            .then(res => {
+                console.log("DELETE RES", res)
+                setPlant(plant)
+                push(`/homepage`)
+            })
+            .catch(err => {
+                console.log("DELETE ERR", err)
             })
     }
 
@@ -82,6 +96,7 @@ const EditForm = ({plant, setPlant}) => {
                         onChange={changeHandler}
                         /></label> &nbsp;
                     <button>Save</button>
+                    <button onClick={deletePlant}>Delete</button>
                 </form>
             </div>
         </>
