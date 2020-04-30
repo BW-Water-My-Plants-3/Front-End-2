@@ -5,25 +5,10 @@ import Login from './Login';
 import { Link } from 'react-router-dom';
 import {Button} from "reactstrap"
 import styled from "styled-components"
+import "../index.css"
 
 
-const WrapperDiv = styled.div`
-    font-size:4em;
-    background-color: green;
-    display:flex;
-    width: 600px;
-    height: 600px;
-    margin: 0 auto;
-    
-    flex-direction:column;
-    
-    `;
-const loginDiv = styled.div`
-width: 200px;
-height: 200px;
-background-color: gray;
-padding:5%
-`;
+
 
 const formSchema = Yup.object().shape({
 username: 
@@ -121,16 +106,16 @@ const Signup = props =>{
     };
 
     return (
-        <WrapperDiv>
+        <div>
 
-            <form onSubmit={formSubmit} className={loginDiv}>
+            <form onSubmit={formSubmit} id="signUpForm">
                 <label htmlFor="username">
                     Username
                 <input id="username" type="text" name="username" value={formState.username} onChange={inputChange} />
                 {errors.username.length > 0 ? (<p>{errors.name}</p>):null}
                 </label>
                 <label htmlFor="phoneNumber">
-                    Phone Number
+                    Phone 
                 <input id="phoneNumber" type="phoneNumber" name="phoneNumber" value={formState.phoneNumber} onChange={inputChange} />
                 {errors.phoneNumber.length > 0 ? (<p className="error"> {errors.phoneNumber}</p>) : null}
                 </label>
@@ -140,14 +125,14 @@ const Signup = props =>{
                 {errors.password.length > 0 ? (<p>{errors.password}</p>):null}
                 </label>
                 
-                <button disabled={buttonDisabled}>Submit</button>
+                <button disabled={buttonDisabled} className="navButton">Submit</button>
             </form>
 
             
-            <loginDiv>
+            <div id="signUpForm">
                 Already have an Account?
-                <Button color="success"><Link to='/login'>Login</Link></Button>
-            </loginDiv>
+                <button className="navButton"><Link to='/login'>Login</Link></button>
+            </div>
 
             {/* <div>
                 <h1>Users</h1>
@@ -157,8 +142,8 @@ const Signup = props =>{
                     );
                 })}
             </div> */}
+        </div>
 
-        </WrapperDiv>
     );
 }
 

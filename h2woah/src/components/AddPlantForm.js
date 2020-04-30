@@ -2,9 +2,13 @@ import React, {useState, useEffect} from "react"
 import { useHistory } from "react-router-dom"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
 
-const AddPlantForm = ({plantList, setPlantList, plant, setPlant}) => {
+const AddPlantForm = ({plantList, setPlantList}) => {
     const {push} = useHistory()
-
+    const [plant, setPlant] = useState({
+        nickname: "",
+        species: "",
+        h2oFrequency: "Once a month",
+    })
     //changeHandler
     const changeHandler = e => {
         e.persist()
@@ -31,7 +35,7 @@ const AddPlantForm = ({plantList, setPlantList, plant, setPlant}) => {
     return(
         <>
         <h2>Add Plant</h2>
-            <p>Fill out the updated information</p>
+            <p>Fill out your plant's information</p>
             <div className="form">
                 <form onSubmit={addNewPlant}> 
                     <label htmlFor="nickname">Nickname: &nbsp;
@@ -64,6 +68,7 @@ const AddPlantForm = ({plantList, setPlantList, plant, setPlant}) => {
                         onChange={changeHandler}
                         /></label> &nbsp;
                     <button>Add</button>
+                    <button onClick={()=> push("/homepage")}>Cancel</button>
                 </form>
             </div>
         </>
