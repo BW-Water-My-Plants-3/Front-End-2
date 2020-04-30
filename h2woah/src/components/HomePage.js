@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from "react"
-import {useHistory, Route} from "react-router-dom"
+import {useHistory, useParams} from "react-router-dom"
 
 //Contexts
 import {HomeContext} from "../contexts/HomeContext"
@@ -8,8 +8,6 @@ import { axiosWithAuth } from "../utils/axiosWithAuth"
 const HomePage = () => {
     const {plantList, setPlantList} = useContext(HomeContext)
     const {push} = useHistory()
-
-    console.log("MY PLANTLIST", plantList)
 
     useEffect(() => {
         axiosWithAuth()
@@ -34,11 +32,14 @@ const HomePage = () => {
             <div>
                 <button onClick={() => push("/add-plant")}>Add Plant</button>
                 <p>{plantList && plantList.map(showPlant => {
+                    // console.log(showPlant.id)
                     return(
-                    <div className="card">
+                    <div className="card" key={showPlant.plant}>
                         <p>Nickname: {showPlant.nickname}</p>
                         <p>Species: {showPlant.species}</p> 
                         <p>Water Me: {showPlant.h2oFrequency}</p>
+                        <button onClick={() => push(`/update-plant/${showPlant.id}`)}>Update</button>
+                        <button>Delete</button>
                     </div>
                     )
                 })}</p>

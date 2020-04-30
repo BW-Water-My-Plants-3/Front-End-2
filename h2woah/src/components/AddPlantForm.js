@@ -2,18 +2,8 @@ import React, {useState, useEffect} from "react"
 import { useHistory } from "react-router-dom"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
 
-const initialPlant = {
-    nickname: "",
-    species: "",
-    h2oFrequency: "",
-    image: ""
-}
-
-//props brought in: plantList
-
-const AddPlantForm = ({plantList, setPlantList}) => {
-    const [plant, setPlant] = useState(initialPlant)
-    const {push, go} = useHistory()
+const AddPlantForm = ({plantList, setPlantList, plant, setPlant}) => {
+    const {push} = useHistory()
     console.log({plant})
 
     //changeHandler

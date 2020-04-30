@@ -1,31 +1,25 @@
 import React, {useState, useEffect} from "react"
 import {useParams, useHistory} from "react-router-dom"
-import axios from "axios"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
 
-const initialPlant = {
-    id: "",
-    nickname: "",
-    species: "",
-    h2oFrequency: "",
-    imageURL: ""
-}
 
-const EditForm = () => {
-    const [plant, setPlant] = useState(initialPlant)
-    // const {push} = useHistory()
+const EditForm = ({plant, setPlant}) => {
+    const {push} = useHistory()
+    const {id} = useParams()
+    console.log({id})
 
     //useEffect for initial load for plant data--GET
-    // useEffect(() => {
-    //     axiosWithAuth()
-    //         .get(``)
-    //         .then(res => {
-    //             console.log("GET RES", res)
-    //         })
-    //         .catch(err => {
-    //             console.log("GET ERR", err)
-    //         })
-    // })
+    useEffect(() => {
+        axiosWithAuth()
+            .get(`/api/plants/${id}`)
+            .then(res => {
+                console.log("GET RES", res)
+                setPlant(res.data)
+            })
+            .catch(err => {
+                console.log("GET ERR", err)
+            })
+    }, [id])
 
     //changeHandler
     const changeHandler = e => {
@@ -37,24 +31,26 @@ const EditForm = () => {
     }
 
     //saveItem onSubmit-->PUT
-    // const saveItem = e => {
-    //     e.preventDefault()
-    //     axiosWithAuth()
-    //         .put(`/api/`, plant) //WAITING FOR .PUT ENDPOINT FOR UPDATING PLANT
-    //         .then(res => {
-    //             console.log("UPDATE PLANT RES", res)
-    //         })
-    //         .catch(err => {
-    //             console.log("UPDATE PLANT ERR", err)
-    //         })
-    // }
+    const saveItem = e => {
+        e.preventDefault()
+        axiosWithAuth()
+            .put(`/api/plants/${id}`, plant) //WAITING FOR .PUT ENDPOINT FOR UPDATING PLANT
+            .then(res => {
+                console.log("UPDATE PLANT RES", res)
+                setPlant(plant)
+                push(`/homepage`) //UPDATE LATER TO INDIVIDUAL PLANT
+            })
+            .catch(err => {
+                console.log("UPDATE PLANT ERR", err)
+            })
+    }
 
     return(
         <>
         <h2>Edit Plant</h2>
             <p>Fill out the updated information</p>
             <div className="form">
-                <form /*ADD ONSUBMIT SAVEITEM */> 
+                <form onSubmit={saveItem}> 
                     <label htmlFor="nickname">Nickname: &nbsp;
                         <input 
                         id="nickname"
