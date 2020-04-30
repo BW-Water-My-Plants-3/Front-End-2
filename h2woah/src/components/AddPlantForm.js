@@ -1,23 +1,15 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import { useHistory } from "react-router-dom"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
 import "../index.css"
 
-const initialPlant = {
-    // id: "",
-    nickname: "",
-    species: "",
-    h2oFrequency: "",
-    image: ""
-}
-
-//props brought in: plantList
-
 const AddPlantForm = ({plantList, setPlantList}) => {
-    const [plant, setPlant] = useState(initialPlant)
     const {push} = useHistory()
-    console.log({plantList})
-
+    const [plant, setPlant] = useState({
+        nickname: "",
+        species: "",
+        h2oFrequency: "Once a month",
+    })
     //changeHandler
     const changeHandler = e => {
         e.persist()
@@ -33,8 +25,7 @@ const AddPlantForm = ({plantList, setPlantList}) => {
         axiosWithAuth()
         .post("/api/plants", plant)
         .then(res => {
-            console.log({res})
-            setPlantList(plant)
+            setPlantList(plantList)
             push("/homepage")
         })
         .catch(err => {
@@ -45,8 +36,9 @@ const AddPlantForm = ({plantList, setPlantList}) => {
     return(
         <>
         <h2 id="homecar">Add Plant</h2>
-            <p class="card">Fill out the updated information</p>
+            <p class="card">Fill out your plant's information</p>
             <div className="card">
+
                 <form onSubmit={addNewPlant}> 
                     <label htmlFor="nickname">Nickname: &nbsp;
                         <input 
@@ -78,6 +70,7 @@ const AddPlantForm = ({plantList, setPlantList}) => {
                         onChange={changeHandler}
                         /></label> &nbsp;
                     <button>Add</button>
+                    <button onClick={()=> push("/homepage")}>Cancel</button>
                 </form>
             </div>
         </>

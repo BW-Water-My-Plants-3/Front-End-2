@@ -1,35 +1,27 @@
-import React, {useState, useEffect} from "react"
+import React, {useEffect} from "react"
 import {useParams, useHistory} from "react-router-dom"
-import axios from "axios"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
 import "../index.css"
-const initialPlant = {
-    id: "",
-    nickname: "",
-    species: "",
-    h2oFrequency: "",
-    imageURL: ""
-}
 
-const EditForm = () => {
-    const [plant, setPlant] = useState(initialPlant)
-    // const {push} = useHistory()
+const EditForm = ({plant, setPlant}) => {
+    const {push} = useHistory()
+    const {id} = useParams()
 
     //useEffect for initial load for plant data--GET
-    // useEffect(() => {
-    //     axiosWithAuth()
-    //         .get(``)
-    //         .then(res => {
-    //             console.log("GET RES", res)
-    //         })
-    //         .catch(err => {
-    //             console.log("GET ERR", err)
-    //         })
-    // })
+    useEffect(() => {
+        axiosWithAuth()
+            .get(`/api/plants/${id}`)
+            .then(res => {
+                setPlant(res.data)
+            })
+            .catch(err => {
+                console.log("GET ERR", err)
+            })
+    }, [id])
 
     //changeHandler
     const changeHandler = e => {
-        e.persist()
+        e.preventDefault()
         setPlant({
             ...plant,
             [e.target.name]: e.target.value
@@ -37,24 +29,38 @@ const EditForm = () => {
     }
 
     //saveItem onSubmit-->PUT
-    // const saveItem = e => {
-    //     e.preventDefault()
-    //     axiosWithAuth()
-    //         .put(`/api/`, plant) //WAITING FOR .PUT ENDPOINT FOR UPDATING PLANT
-    //         .then(res => {
-    //             console.log("UPDATE PLANT RES", res)
-    //         })
-    //         .catch(err => {
-    //             console.log("UPDATE PLANT ERR", err)
-    //         })
-    // }
+    const saveItem = e => {
+        e.preventDefault()
+        axiosWithAuth()
+            .put(`/api/plants/${id}`, plant)
+            .then(res => {
+                setPlant(plant)
+                push(`/homepage`)
+            })
+            .catch(err => {
+                console.log("UPDATE PLANT ERR", err)
+            })
+    }
+
+    const deletePlant = e => {
+        e.preventDefault()
+        axiosWithAuth()
+            .delete(`/api/plants/${id}`)
+            .then(res => {
+                setPlant(plant)
+                push(`/homepage`)
+            })
+            .catch(err => {
+                console.log("DELETE ERR", err)
+            })
+    }
 
     return(
         <>
         <h2>Edit Plant</h2>
             <p>Fill out the updated information</p>
             <div className="form">
-                <form /*ADD ONSUBMIT SAVEITEM */> 
+                <form onSubmit={saveItem}> 
                     <label htmlFor="nickname">Nickname: &nbsp;
                         <input 
                         id="nickname"
@@ -71,21 +77,22 @@ const EditForm = () => {
                         /></label> &nbsp;
                     <label htmlFor="h2oFrequency">Water Frequency: &nbsp;
                         <select id="h2oFrequency" name="h2oFrequency">
-                            <option value="low" >Once a month</option>
-                            <option value="medium" >Once a week</option>
-                            <option value="medium-high" >Once a day</option>
-                            <option value="high" >Twice a day</option>
+                            <option value="Once a month" >Once a month</option>
+                            <option value="Once a week" >Once a week</option>
+                            <option value="Once a day" >Once a day</option>
+                            <option value="Twice a day" >Twice a day</option>
                         </select>
                     </label> &nbsp;
-                    <label htmlFor="imageURL">Image URL: &nbsp;
+                    <label htmlFor="image">Image URL: &nbsp;
                         <input 
                         type="string"
-                        id="imageURL"
-                        name="imageURL"
-                        value={plant.imageURL}
+                        id="image"
+                        name="image"
+                        value={plant.image}
                         onChange={changeHandler}
                         /></label> &nbsp;
                     <button>Save</button>
+                    <button onClick={deletePlant}>Delete</button>
                 </form>
             </div>
         </>

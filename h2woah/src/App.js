@@ -7,19 +7,32 @@ import HomePage from "./components/HomePage"
 import Login from "./components/Login"
 import Signup from './components/Signup';
 import AddPlantForm from "./components/AddPlantForm"
+import EditForm from "./components/EditForm"
+
+//Contexts
+import {HomeContext} from "./contexts/HomeContext"
+
+const initialPlant = {
+  nickname: "",
+  species: "",
+  h2oFrequency: "",
+  image: null
+}
 
 function App() {
   const [plantList, setPlantList] = useState([])
-  // console.log({setPlantList})
+  const [plant, setPlant] = useState(initialPlant)
 
   return (
     <Router>
       <div className="App">
-        {/* put components in here */}
-        <Route exact path ="/" component={Signup} />
-        <Route exact path ="/login" component={Login} />
-        <Route path="/add-plant" render={props=> <AddPlantForm {...props} plantList={plantList} setPlantList={setPlantList}/>}/>
-        <PrivateRoute exact path="/homepage" component={HomePage} />
+        <HomeContext.Provider value={{plantList, setPlantList, plant, setPlant}}>
+          <Route exact path ="/" component={Signup} />
+          <Route exact path ="/login" component={Login} />
+          <PrivateRoute exact path="/homepage" component={HomePage} />
+          <Route exact path="/update-plant/:id" render={props=> <EditForm {...props} plantList={plantList} setPlantList={setPlantList} plant={plant} setPlant={setPlant}/>}/>
+          <Route exact path="/add-plant" render={props=> <AddPlantForm {...props} plantList={plantList} setPlantList={setPlantList} plant={plant} setPlant={setPlant}/>}/>
+        </HomeContext.Provider>
       </div>
     </Router>
   );
