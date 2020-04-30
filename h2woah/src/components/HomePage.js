@@ -26,7 +26,8 @@ const HomePage = () => {
             <header>
                 <h2>Water My Plants</h2>
                 <p>My Plants</p>
-                <i className="fas fa-user"></i>
+                {/* <i className="fas fa-user"></i> */}
+                <button onClick={() => push("/login")}>Log out</button>
             </header>
             
             <div>

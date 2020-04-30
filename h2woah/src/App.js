@@ -31,7 +31,7 @@ function App() {
           <Route exact path ="/login" component={Login} />
           <PrivateRoute exact path="/homepage" component={HomePage} />
           <Route path="/update-plant/:id" render={props=> <EditForm {...props} plantList={plantList} setPlantList={setPlantList} plant={plant} setPlant={setPlant}/>}/>
-          <Route path="/add-plant" render={props=> <AddPlantForm {...props} plantList={plantList} setPlantList={setPlantList}/>}/>
+          <Route path="/add-plant" render={props=> <AddPlantForm {...props} plantList={plantList} setPlantList={setPlantList} plant={plant} setPlant={setPlant}/>}/>
         </HomeContext.Provider>
       </div>
     </Router>

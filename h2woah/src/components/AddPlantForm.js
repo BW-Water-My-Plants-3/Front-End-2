@@ -4,7 +4,6 @@ import { axiosWithAuth } from "../utils/axiosWithAuth"
 
 const AddPlantForm = ({plantList, setPlantList, plant, setPlant}) => {
     const {push} = useHistory()
-    console.log({plant})
 
     //changeHandler
     const changeHandler = e => {
