@@ -16,8 +16,8 @@ username:
     phoneNumber: 
     Yup
     .string()
-    .required('Please enter your phoneNumber number')
-    .length(10,'Please enter a VALID phoneNumber number in the following format 1234567890'),
+    .required('Please enter your number')
+    .length(10,'Please enter a VALID phone number in the following format 1234567890'),
 
     password: 
     Yup
@@ -132,7 +132,7 @@ const Signup = props =>{
             </form>
 
             
-            <div id="signUpForm">
+            <div id="signUpForm" className="card">
                 Already have an Account?
                 <button className="navButton"><Link to='/login'>Login</Link></button>
             </div>

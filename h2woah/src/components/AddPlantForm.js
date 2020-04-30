@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 import { useHistory } from "react-router-dom"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
+import "../index.css"
 
 const AddPlantForm = ({plantList, setPlantList}) => {
     const {push} = useHistory()
@@ -34,9 +35,10 @@ const AddPlantForm = ({plantList, setPlantList}) => {
 
     return(
         <>
-        <h2>Add Plant</h2>
-            <p>Fill out your plant's information</p>
-            <div className="form">
+        <h2 id="homecar">Add Plant</h2>
+            <p class="card">Fill out your plant's information</p>
+            <div className="card">
+
                 <form onSubmit={addNewPlant}> 
                     <label htmlFor="nickname">Nickname: &nbsp;
                         <input 

@@ -1,7 +1,7 @@
 import React, {useEffect} from "react"
 import {useParams, useHistory} from "react-router-dom"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
-
+import "../index.css"
 
 const EditForm = ({plant, setPlant}) => {
     const {push} = useHistory()

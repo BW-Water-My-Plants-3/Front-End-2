@@ -1,11 +1,30 @@
+html{
+  background-color: lightseagreen;
+
+position: absolute;
+width: 1081px;
+height: 1440px;
+left: 1440px;
+top: 67px;
+
+background: linear-gradient(0deg, rgba(114, 114, 114, 0.2), rgba(114, 114, 114, 0.2)), url(.jpg);
+transform: rotate(90deg);
+
+}
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
       "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
       sans-serif;
+      
     
   }
-  
+  label {
+     display: table-cell; 
+  }
+  input { 
+    display: table-cell; 
+  }
   
   .errors {
     color: red;
@@ -41,13 +60,14 @@ body {
   }
   .card {
     width: 30%;
-    margin-top: 10%;
+    
     margin: 0 auto;
     box-shadow: 5px 7px 5px;
     background-color: aliceblue;
     padding-left: 0.2%;
     padding-right: 0.2%;
     align-items: center;
+    display: table; 
     
   }
   
@@ -73,7 +93,7 @@ body {
   }
   #signUpForm {
     width: 20%;
-    margin: 0 auto;
+    margin: 2% auto;
     padding: 1%;
     box-shadow: 10px 10px 10px;
     background-color: aliceblue;
