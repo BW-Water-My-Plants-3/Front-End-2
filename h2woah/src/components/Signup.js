@@ -103,7 +103,8 @@ const Signup = props =>{
 
     return (
         <div>
-
+            <h2>Let's get started!</h2>
+            <p>Create your account</p>
             <form onSubmit={formSubmit} id="signUpForm">
                 <label htmlFor="username">
                     Username
