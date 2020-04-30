@@ -22,12 +22,10 @@ const initialPlant = {
 function App() {
   const [plantList, setPlantList] = useState([])
   const [plant, setPlant] = useState(initialPlant)
-  // console.log({setPlantList})
 
   return (
     <Router>
       <div className="App">
-        {/* put components in here */}
         <HomeContext.Provider value={{plantList, setPlantList, plant, setPlant}}>
           <Route exact path ="/" component={Signup} />
           <Route exact path ="/login" component={Login} />

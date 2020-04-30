@@ -21,7 +21,6 @@ const AddPlantForm = ({plantList, setPlantList, plant, setPlant}) => {
         axiosWithAuth()
         .post("/api/plants", plant)
         .then(res => {
-            console.log({res})
             setPlantList(plantList)
             push("/homepage")
         })

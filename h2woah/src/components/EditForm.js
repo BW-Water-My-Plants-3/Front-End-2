@@ -6,7 +6,6 @@ import { axiosWithAuth } from "../utils/axiosWithAuth"
 const EditForm = ({plant, setPlant}) => {
     const {push} = useHistory()
     const {id} = useParams()
-    // console.log({id})
 
     //useEffect for initial load for plant data--GET
     useEffect(() => {
@@ -34,11 +33,11 @@ const EditForm = ({plant, setPlant}) => {
     const saveItem = e => {
         e.preventDefault()
         axiosWithAuth()
-            .put(`/api/plants/${id}`, plant) //WAITING FOR .PUT ENDPOINT FOR UPDATING PLANT
+            .put(`/api/plants/${id}`, plant)
             .then(res => {
                 console.log("UPDATE PLANT RES", res)
                 setPlant(plant)
-                push(`/homepage`) //UPDATE LATER TO INDIVIDUAL PLANT
+                push(`/homepage`)
             })
             .catch(err => {
                 console.log("UPDATE PLANT ERR", err)
@@ -48,7 +47,7 @@ const EditForm = ({plant, setPlant}) => {
     const deletePlant = e => {
         e.preventDefault()
         axiosWithAuth()
-            .delete(`/api/plants/${id}`) //${} WHAT IS THE ID??
+            .delete(`/api/plants/${id}`)
             .then(res => {
                 console.log("DELETE RES", res)
                 setPlant(plant)

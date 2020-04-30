@@ -14,7 +14,6 @@ const HomePage = () => {
         axiosWithAuth()
             .get("/api/plants")
             .then(res => {
-                // console.log("useEffect res", res)
                 setPlantList(res.data)
             })
             .catch(err => {
@@ -33,7 +32,6 @@ const HomePage = () => {
             <div>
                 <button onClick={() => push("/add-plant")}>Add Plant</button>
                 <p>{plantList && plantList.map(showPlant => {
-                    // console.log(showPlant.id)
                     return(
                     <div className="card" key={showPlant.plant}>
                         <p>Nickname: {showPlant.nickname}</p>
