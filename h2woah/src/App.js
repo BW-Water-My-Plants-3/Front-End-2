@@ -8,6 +8,9 @@ import Login from "./components/Login"
 import Signup from './components/Signup';
 import AddPlantForm from "./components/AddPlantForm"
 
+//Contexts
+import {HomeContext} from "./contexts/HomeContext"
+
 function App() {
   const [plantList, setPlantList] = useState([])
   // console.log({setPlantList})
@@ -16,10 +19,12 @@ function App() {
     <Router>
       <div className="App">
         {/* put components in here */}
-        <Route exact path ="/" component={Signup} />
-        <Route exact path ="/login" component={Login} />
-        <Route path="/add-plant" render={props=> <AddPlantForm {...props} plantList={plantList} setPlantList={setPlantList}/>}/>
-        <PrivateRoute exact path="/homepage" component={HomePage} />
+        <HomeContext.Provider value={{plantList, setPlantList}}>
+          <Route exact path ="/" component={Signup} />
+          <Route exact path ="/login" component={Login} />
+          <Route path="/add-plant" render={props=> <AddPlantForm {...props} plantList={plantList} setPlantList={setPlantList}/>}/>
+          <PrivateRoute exact path="/homepage" component={HomePage} />
+        </HomeContext.Provider>
       </div>
     </Router>
   );

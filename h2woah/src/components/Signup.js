@@ -159,8 +159,6 @@ const Signup = props =>{
             </div> */}
 
         </WrapperDiv>
-
-        </div>
     );
 }
 
