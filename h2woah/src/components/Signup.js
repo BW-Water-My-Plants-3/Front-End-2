@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import styled from "styled-components"
 import img from "../images/palmleaves.jpg"
 
-const TestStyle = styled.body`
+const TestStyle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +18,7 @@ const TestStyle = styled.body`
     max-width: 100%;
     height: 100vh;
 `
-const Form = styled.div`
+const Form = styled.form`
     border: 1px solid #F1F3F2;
     display: flex;
     flex-direction: column;
@@ -32,7 +32,7 @@ const Form = styled.div`
     opacity: 95%;
 
 `
-const Button = styled.button`
+const StyledButton = styled.button`
     border: 1px solid #303631;
     border-radius: 5px;
     background-color: #97AD4B;
@@ -123,6 +123,9 @@ const Signup = props =>{
     };
 
     const formSubmit = event => {
+
+        console.log('formSubmit');
+        
         event.preventDefault();
         axios.post("https://h2omyplants.herokuapp.com/api/signup", formState)
             .then(res => {
@@ -142,7 +145,7 @@ const Signup = props =>{
 
     return (
         <TestStyle>
-                <Form onSubmit={formSubmit} id="signUpForm">
+                <Form onSubmit={formSubmit}>
                     <h2>Let's get started!</h2>
                     <p>Create your account</p>
                     <label htmlFor="username">
@@ -161,11 +164,11 @@ const Signup = props =>{
                     {errors.password.length > 0 ? (<p>{errors.password}</p>):null}
                     </label><br/>
                     
-                    <Button disabled={buttonDisabled} className="navButton">Submit</Button>
+                    <StyledButton disabled={buttonDisabled} type='submit'>Submit</StyledButton>
                     <p className="success-message">{users.map(element => {
                         console.log({element})
                         return (
-                        <div>Success: {element.message}! Go to <Link onClick={() => props.history.push("/login")}>Login</Link></div>
+                        <><br /><div>Success: {element.message}! Go to <Link onClick={() => props.history.push("/login")}>Login</Link></div></>
                         );
                     })}</p><br/>
                     <p>Already have an Account? <Link to='/login'>Login</Link> here!</p>
