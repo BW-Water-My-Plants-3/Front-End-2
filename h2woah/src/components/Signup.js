@@ -2,10 +2,76 @@ import React, {useState, useEffect} from 'react';
 import * as Yup from "yup";
 import axios from "axios"
 import { Link } from 'react-router-dom';
-import "../index.css"
+//Styles
+import styled from "styled-components"
+import img from "../images/palmleaves.jpg"
 
+const TestStyle = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(${img});
+    background-repeat: no-repeat;
+    background-size: 100% 120vh;
+    background-position: center;
+    opacity: 60%;
+    max-width: 100%;
+    height: 100vh;
+`
+const Form = styled.form`
+    border: 1px solid #F1F3F2;
+    display: flex;
+    flex-direction: column;
+    jusity-content: center;
+    align-items: center;
+    width: 32%;
+    height: 70%;
+    background-color: #C9CFCA;
+    border-radius: 5px;
+    padding: 2% 0;
+    opacity: 95%;
 
+`
+const StyledButton = styled.button`
+    border: 1px solid #303631;
+    border-radius: 5px;
+    background-color: #97AD4B;
+    color: #F1F3F2;
+    outline: none;
+    width: 30%;
+    height: 40px;
+    font-size: large;
 
+    &:hover{
+        background-color: #F1F3F2;
+        color: #97AD4B;
+        border: 1px solid #79867C;
+    }
+`
+const ResMessage = styled.p`
+    color: #97AD4B;
+    text-shadow: 0px 1px #79867C;
+`
+const FlexDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;    
+    margin-top: 3%;
+`
+const Label = styled.label`
+    width: 42%;
+`
+const Input = styled.input`
+    outline: none;
+    border-radius: 3px;
+`
+const ErrorMsg = styled.p`
+    margin-top: 2%;
+    font-weight: bold;
+    width: 140%;
+    color: #CD1919;
+`
 
 const formSchema = Yup.object().shape({
 username: 
@@ -84,6 +150,9 @@ const Signup = props =>{
     };
 
     const formSubmit = event => {
+
+        console.log('formSubmit');
+        
         event.preventDefault();
         axios.post("https://h2omyplants.herokuapp.com/api/signup", formState)
             .then(res => {
@@ -91,7 +160,7 @@ const Signup = props =>{
                 console.log("success", res.data);
                 setUsers([...users, res.data])
                 setFormState({
-                    name: "",
+                    username: "",
                     phoneNumber: "",
                     password: "",
                 });
@@ -102,41 +171,38 @@ const Signup = props =>{
     };
 
     return (
-        <div>
-            <h2>Let's get started!</h2>
-            <p>Create your account</p>
-            <form onSubmit={formSubmit} id="signUpForm">
-                <label htmlFor="username">
-                    Username
-                <input id="username" type="text" name="username" value={formState.username} onChange={inputChange} />
-                {errors.username.length > 0 ? (<p>{errors.name}</p>):null}
-                </label>
-                <label htmlFor="phoneNumber">
-                    Phone 
-                <input id="phoneNumber" type="phoneNumber" name="phoneNumber" value={formState.phoneNumber} onChange={inputChange} />
-                {errors.phoneNumber.length > 0 ? (<p className="error"> {errors.phoneNumber}</p>) : null}
-                </label>
-                <label htmlFor="password">
-                    Password
-                <input id="password" type="password" name="password" value={formState.password} onChange={inputChange} />
-                {errors.password.length > 0 ? (<p>{errors.password}</p>):null}
-                </label>
-                
-                <button disabled={buttonDisabled} className="navButton">Submit</button>
-                <p className="success-message">{users.map(element => {
-                    console.log({element})
-                    return (
-                    <div>Success: {element.message}! Go to <Link onClick={() => props.history.push("/login")}>Login</Link></div>
-                    );
-                })}</p>
-            </form>
-
-            
-            <div id="signUpForm" className="card">
-                Already have an Account?
-                <button className="navButton"><Link to='/login'>Login</Link></button>
-            </div>
-        </div>
+        <TestStyle>
+                <Form onSubmit={formSubmit}>
+                    <h2>Let's get started!</h2>
+                    <p>Create your account</p>
+                    <FlexDiv>
+                        <Label htmlFor="username">
+                            Username <br/>
+                        <Input id="username" type="text" name="username" value={formState.username} onChange={inputChange} />
+                        {errors.username.length > 0 ? (<ErrorMsg>{errors.name}</ErrorMsg>):null}
+                        </Label> <br/>
+                        <Label htmlFor="phoneNumber">
+                            Phone <br/>
+                        <Input id="phoneNumber" type="phoneNumber" name="phoneNumber" value={formState.phoneNumber} onChange={inputChange} />
+                        {errors.phoneNumber.length > 0 ? (<ErrorMsg className="error"> {errors.phoneNumber}</ErrorMsg>) : null}
+                        </Label><br/>
+                        <Label htmlFor="password">
+                            Password <br/>
+                        <Input id="password" type="password" name="password" value={formState.password} onChange={inputChange} />
+                        {errors.password.length > 0 ? (<ErrorMsg>{errors.password}</ErrorMsg>):null}
+                        </Label><br/>
+                    </FlexDiv>
+                    <StyledButton disabled={buttonDisabled} type='submit'>Submit</StyledButton>
+                    <ResMessage className="success-message">{users.map(element => {
+                        console.log({element})
+                        return (
+                        <><br /><div>Success: {element.message}! Go to <Link onClick={() => props.history.push("/login")}>Login</Link></div></>
+                        );
+                    })}</ResMessage><br/>
+                    <p>Already have an Account? <Link to='/login'>Login</Link> here!</p>
+                </Form>
+                    
+        </TestStyle>
 
     );
 }

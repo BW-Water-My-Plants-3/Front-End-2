@@ -1,7 +1,80 @@
 import React, {useEffect} from "react"
 import {useParams, useHistory} from "react-router-dom"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
-import "../index.css"
+//Styles
+import styled from "styled-components"
+import img from "../images/figtree.jpg"
+
+const TestStyle = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(${img});
+    background-repeat: no-repeat;
+    background-size: 100% 120vh;
+    background-position: center;
+    opacity: 60%;
+    max-width: 100%;
+    height: 100vh;
+`
+const Form = styled.form`
+    border: 1px solid #F1F3F2;
+    display: flex;
+    flex-direction: column;
+    jusity-content: center;
+    align-items: center;
+    width: 32%;
+    height: 70%;
+    background-color: #C9CFCA;
+    border-radius: 5px;
+    padding: 2% 0;
+    opacity: 95%;
+
+`
+const StyledButton = styled.button`
+    border: 1px solid #303631;
+    border-radius: 5px;
+    background-color: #97AD4B;
+    color: #F1F3F2;
+    outline: none;
+    width: 35%;
+    height: 40px;
+    font-size: large;
+
+    &:hover{
+        background-color: #F1F3F2;
+        color: #97AD4B;
+        border: 1px solid #79867C;
+    }
+`
+const DeleteButton = styled.button`
+    border: 1px solid #303631;
+    border-radius: 5px;
+    background-color: #CD1919;
+    color: #F1F3F2;
+    outline: none;
+    height: 40px;
+    font-size: large;
+
+    &:hover{
+        background-color: #F1F3F2;
+        color: #CD1919;
+        border: 1px solid #CD1919;
+    }
+`
+const Input = styled.input`
+    outline: none;
+    border-radius: 3px;
+`
+const Selector = styled.select`
+    height: 27px;
+`
+const FlexDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 38%;
+`
+
 
 const EditForm = ({plant, setPlant}) => {
     const {push} = useHistory()
@@ -56,46 +129,46 @@ const EditForm = ({plant, setPlant}) => {
     }
 
     return(
-        <>
-        <h2>Edit Plant</h2>
-            <p>Fill out the updated information</p>
-            <div className="form">
-                <form onSubmit={saveItem}> 
-                    <label htmlFor="nickname">Nickname: &nbsp;
-                        <input 
-                        id="nickname"
-                        name="nickname"
-                        value={plant.nickname}
-                        onChange={changeHandler}
-                        /></label> &nbsp;
-                     <label htmlFor="species">Species: (optional) &nbsp;
-                        <input 
-                        id="species"
-                        name="species"
-                        value={plant.species}
-                        onChange={changeHandler}
-                        /></label> &nbsp;
-                    <label htmlFor="h2oFrequency">Water Frequency: &nbsp;
-                        <select id="h2oFrequency" name="h2oFrequency">
-                            <option value="Once a month" >Once a month</option>
-                            <option value="Once a week" >Once a week</option>
-                            <option value="Once a day" >Once a day</option>
-                            <option value="Twice a day" >Twice a day</option>
-                        </select>
-                    </label> &nbsp;
-                    <label htmlFor="image">Image URL: &nbsp;
-                        <input 
-                        type="string"
-                        id="image"
-                        name="image"
-                        value={plant.image}
-                        onChange={changeHandler}
-                        /></label> &nbsp;
-                    <button>Save</button>
-                    <button onClick={deletePlant}>Delete</button>
-                </form>
-            </div>
-        </>
+        <TestStyle className="form">
+            <Form onSubmit={saveItem}> 
+                <h2>Edit Plant</h2>
+                <p>Fill out the updated information</p>
+                <label htmlFor="nickname">Nickname <br/>
+                    <Input 
+                    id="nickname"
+                    name="nickname"
+                    value={plant.nickname}
+                    onChange={changeHandler}
+                    /></label><br/>
+                    <label htmlFor="species">Species <br/>
+                    <Input 
+                    id="species"
+                    name="species"
+                    value={plant.species}
+                    onChange={changeHandler}
+                    /></label><br/>
+                <label htmlFor="h2oFrequency">Water Frequency &nbsp;
+                    <Selector id="h2oFrequency" name="h2oFrequency">
+                        <option value="Once a month" >Once a month</option>
+                        <option value="Once a week" >Once a week</option>
+                        <option value="Once a day" >Once a day</option>
+                        <option value="Twice a day" >Twice a day</option>
+                    </Selector>
+                </label><br/>
+                <label htmlFor="image">Image URL <br/>
+                    <Input 
+                    type="string"
+                    id="image"
+                    name="image"
+                    value={plant.image}
+                    onChange={changeHandler}
+                    /></label><br/>
+                <FlexDiv>
+                    <StyledButton>Save</StyledButton>
+                    <DeleteButton onClick={deletePlant}>Delete</DeleteButton>
+                </FlexDiv>
+            </Form>
+        </TestStyle>
     )
 }
 
