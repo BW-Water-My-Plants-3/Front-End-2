@@ -49,9 +49,24 @@ const ResMessage = styled.p`
     color: #97AD4B;
     text-shadow: 0px 1px #79867C;
 `
+const FlexDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;    
+`
+const Label = styled.label`
+    width: 42%;
+`
 const Input = styled.input`
     outline: none;
     border-radius: 3px;
+`
+const ErrorMsg = styled.p`
+    margin-top: 2%;
+    font-weight: bold;
+    width: 140%;
+    color: #CD1919;
 `
 
 const formSchema = Yup.object().shape({
@@ -156,22 +171,23 @@ const Signup = props =>{
                 <Form onSubmit={formSubmit}>
                     <h2>Let's get started!</h2>
                     <p>Create your account</p>
-                    <label htmlFor="username">
-                        Username <br/>
-                    <Input id="username" type="text" name="username" value={formState.username} onChange={inputChange} />
-                    {errors.username.length > 0 ? (<p>{errors.name}</p>):null}
-                    </label> <br/>
-                    <label htmlFor="phoneNumber">
-                        Phone <br/>
-                    <Input id="phoneNumber" type="phoneNumber" name="phoneNumber" value={formState.phoneNumber} onChange={inputChange} />
-                    {errors.phoneNumber.length > 0 ? (<p className="error"> {errors.phoneNumber}</p>) : null}
-                    </label><br/>
-                    <label htmlFor="password">
-                        Password <br/>
-                    <Input id="password" type="password" name="password" value={formState.password} onChange={inputChange} />
-                    {errors.password.length > 0 ? (<p>{errors.password}</p>):null}
-                    </label><br/>
-                    
+                    <FlexDiv>
+                        <Label htmlFor="username">
+                            Username <br/>
+                        <Input id="username" type="text" name="username" value={formState.username} onChange={inputChange} />
+                        {errors.username.length > 0 ? (<ErrorMsg>{errors.name}</ErrorMsg>):null}
+                        </Label> <br/>
+                        <Label htmlFor="phoneNumber">
+                            Phone <br/>
+                        <Input id="phoneNumber" type="phoneNumber" name="phoneNumber" value={formState.phoneNumber} onChange={inputChange} />
+                        {errors.phoneNumber.length > 0 ? (<ErrorMsg className="error"> {errors.phoneNumber}</ErrorMsg>) : null}
+                        </Label><br/>
+                        <Label htmlFor="password">
+                            Password <br/>
+                        <Input id="password" type="password" name="password" value={formState.password} onChange={inputChange} />
+                        {errors.password.length > 0 ? (<ErrorMsg>{errors.password}</ErrorMsg>):null}
+                        </Label><br/>
+                    </FlexDiv>
                     <StyledButton disabled={buttonDisabled} type='submit'>Submit</StyledButton>
                     <ResMessage className="success-message">{users.map(element => {
                         console.log({element})
