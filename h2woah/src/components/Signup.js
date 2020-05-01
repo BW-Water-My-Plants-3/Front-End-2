@@ -24,7 +24,7 @@ const Form = styled.form`
     flex-direction: column;
     jusity-content: center;
     align-items: center;
-    width: 40%;
+    width: 32%;
     height: 70%;
     background-color: #C9CFCA;
     border-radius: 5px;
@@ -48,6 +48,10 @@ const StyledButton = styled.button`
 const ResMessage = styled.p`
     color: #97AD4B;
     text-shadow: 0px 1px #79867C;
+`
+const Input = styled.input`
+    outline: none;
+    border-radius: 3px;
 `
 
 const formSchema = Yup.object().shape({
@@ -154,17 +158,17 @@ const Signup = props =>{
                     <p>Create your account</p>
                     <label htmlFor="username">
                         Username <br/>
-                    <input id="username" type="text" name="username" value={formState.username} onChange={inputChange} />
+                    <Input id="username" type="text" name="username" value={formState.username} onChange={inputChange} />
                     {errors.username.length > 0 ? (<p>{errors.name}</p>):null}
                     </label> <br/>
                     <label htmlFor="phoneNumber">
                         Phone <br/>
-                    <input id="phoneNumber" type="phoneNumber" name="phoneNumber" value={formState.phoneNumber} onChange={inputChange} />
+                    <Input id="phoneNumber" type="phoneNumber" name="phoneNumber" value={formState.phoneNumber} onChange={inputChange} />
                     {errors.phoneNumber.length > 0 ? (<p className="error"> {errors.phoneNumber}</p>) : null}
                     </label><br/>
                     <label htmlFor="password">
                         Password <br/>
-                    <input id="password" type="password" name="password" value={formState.password} onChange={inputChange} />
+                    <Input id="password" type="password" name="password" value={formState.password} onChange={inputChange} />
                     {errors.password.length > 0 ? (<p>{errors.password}</p>):null}
                     </label><br/>
                     
