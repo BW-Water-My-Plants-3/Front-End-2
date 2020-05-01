@@ -25,10 +25,10 @@ const Form = styled.form`
     jusity-content: center;
     align-items: center;
     width: 40%;
-    height: 65%;
+    height: 70%;
     background-color: #C9CFCA;
     border-radius: 5px;
-    padding: 3% 0;
+    padding: 2% 0;
     opacity: 95%;
 
 `
@@ -44,6 +44,10 @@ const StyledButton = styled.button`
         color: #97AD4B;
         border: 1px solid #79867C;
     }
+`
+const ResMessage = styled.p`
+    color: #97AD4B;
+    text-shadow: 0px 1px #79867C;
 `
 
 const formSchema = Yup.object().shape({
@@ -165,12 +169,12 @@ const Signup = props =>{
                     </label><br/>
                     
                     <StyledButton disabled={buttonDisabled} type='submit'>Submit</StyledButton>
-                    <p className="success-message">{users.map(element => {
+                    <ResMessage className="success-message">{users.map(element => {
                         console.log({element})
                         return (
                         <><br /><div>Success: {element.message}! Go to <Link onClick={() => props.history.push("/login")}>Login</Link></div></>
                         );
-                    })}</p><br/>
+                    })}</ResMessage><br/>
                     <p>Already have an Account? <Link to='/login'>Login</Link> here!</p>
                 </Form>
                     
