@@ -37,13 +37,23 @@ const StyledButton = styled.button`
     background-color: #97AD4B;
     color: #F1F3F2;
     outline: none;
-    margin-bottom: 31.5%;
+    margin-bottom: 15.5%;
+    width: 30%;
+    height: 40px;
+    font-size: large;
 
     &:hover{
         background-color: #F1F3F2;
         color: #97AD4B;
         border: 1px solid #79867C;
     }
+`
+const FlexDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;    
+    margin-top: 3%;
 `
 const Input = styled.input`
     outline: none;
@@ -84,25 +94,26 @@ class Login extends React.Component{
     render(){
         return(
         <TestStyle>
-            {/* <div className="login form"> */}
                 <Form onSubmit={this.login}> 
                     <h2>Welcome Back!</h2>
                     <p>Log into your account</p>
-                    <label htmlFor="username">Username <br/>
-                        <Input 
-                        id="username"
-                        name="username"
-                        value={this.state.username}
-                        onChange={this.handleChange}
-                        /></label> <br/>
-                    <label htmlFor="password">Password <br/>
-                        <Input 
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        /></label><br/>
+                    <FlexDiv>
+                        <label htmlFor="username">Username <br/>
+                            <Input 
+                            id="username"
+                            name="username"
+                            value={this.state.username}
+                            onChange={this.handleChange}
+                            /></label> <br/>
+                        <label htmlFor="password">Password <br/>
+                            <Input 
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                            /></label><br/>
+                    </FlexDiv>
                     <StyledButton>Log in</StyledButton><br />
                     <p>Don't have an Account? <Link to='/'>Sign Up</Link> here!</p>
                 </Form>

@@ -38,6 +38,9 @@ const StyledButton = styled.button`
     background-color: #97AD4B;
     color: #F1F3F2;
     outline: none;
+    width: 30%;
+    height: 40px;
+    font-size: large;
 
     &:hover{
         background-color: #F1F3F2;
@@ -54,6 +57,7 @@ const FlexDiv = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;    
+    margin-top: 3%;
 `
 const Label = styled.label`
     width: 42%;
