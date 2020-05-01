@@ -13,11 +13,11 @@ const TestStyle = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     background-image: url("https://images.unsplash.com/photo-1485627941502-d2e6429a8af0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
-    background-repeat: repeat-y;
     background-size: 100% 120vh;
+    background-repeat: repeat-y;
     background-position: center;
     max-width: 100%;
-    height: 100vh;
+    height: 100%;
 `
 const MyHeader = styled.div`
     display: flex;
@@ -74,7 +74,7 @@ const CardHolder = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 100vh;
+    height: 100%;
 `
 const CardParent = styled.div`
     border: 2px solid red;
@@ -82,7 +82,7 @@ const CardParent = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;   
-    height: 100vh;
+    height: 100%;
     padding: 0 4%; 
 
 `
@@ -99,6 +99,10 @@ const Card = styled.div`
     color: #f1f3f2;
     padding: 1%;
     box-shadow: 4px 4px rgba(151, 173, 75, 0.75);
+
+    &:hover{
+        opacity: .9;
+    }
 `
 const ImageStyle = styled.img`
     height: 180px;
