@@ -5,6 +5,7 @@ import {HomeContext} from "../contexts/HomeContext"
 import { axiosWithAuth } from "../utils/axiosWithAuth"
 //Styles
 import styled from "styled-components"
+import logo from "../images/company-logo.png"
 
 const TestStyle = styled.div`
     display: flex;
@@ -12,7 +13,7 @@ const TestStyle = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     background-image: url("https://images.unsplash.com/photo-1485627941502-d2e6429a8af0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-size: 100% 120vh;
     background-position: center;
     max-width: 100%;
@@ -22,12 +23,19 @@ const MyHeader = styled.div`
     display: flex;
     width: 100%;
     justify-content: flex-end;
+    align-items: center;
     background-color: #303631;
 `
+const Logo = styled.img`
+    width: 150px;
+    height: 150px;
+`
 const H2 = styled.h2`
-    margin-right: 52%;
+    margin-right: 45%;
+    margin-left: 1%;
     color: #F1F3F2;
     text-shadow: -2px -2px #97AD4B;
+    font-size: 2.5rem;
 `
 const StyledButton = styled.button`
     border: 1px solid #303631;
@@ -52,7 +60,8 @@ const LogoutButton = styled.button`
     outline: none;
     height: 40px;
     font-size: large;
-    margin-left: 3%;
+    margin-left: 2%;
+    margin-right: 1%;
 
     &:hover{
         background-color: #F1F3F2;
@@ -120,6 +129,7 @@ const HomePage = () => {
     return(
         <TestStyle>
             <MyHeader>
+                <Logo src={logo} alt="Water My Plants Logo"/>
                 <H2>Water My Plants</H2>
                 <StyledButton onClick={() => push("/add-plant")}>Add Plant</StyledButton>
                 <LogoutButton onClick={() => push("/login")}>Log out</LogoutButton>
