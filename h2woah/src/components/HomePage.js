@@ -13,7 +13,6 @@ const TestStyle = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    // background-image: url("https://images.unsplash.com/photo-1485627941502-d2e6429a8af0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
     background-size: 100% 120vh;
     background-repeat: repeat-y;
     background-position: center;
@@ -87,7 +86,6 @@ const CardParent = styled.div`
     flex-wrap: wrap;   
     height: 100%;
     padding: 0 4%; 
-
 `
 const Card = styled.div`
     display: flex;
@@ -134,13 +132,15 @@ const HomePage = () => {
     }, [])
 
     return(
-        <TestStyle>
-            <MyHeader>
+        <>
+        <MyHeader>
                 <Logo src={logo} alt="Water My Plants Logo"/>
                 <H2>Water My Plants</H2>
                 <StyledButton onClick={() => push("/add-plant")}>Add Plant</StyledButton>
                 <LogoutButton onClick={() => push("/login")}>Log out</LogoutButton>
-            </MyHeader>
+        </MyHeader>
+        <TestStyle>
+            
             
             <CardHolder>
                 <CardParent>{plantList && plantList.map(showPlant => {
@@ -167,6 +167,7 @@ const HomePage = () => {
                 })}</CardParent>
             </CardHolder>
         </TestStyle>
+        </>
     )
 }
 
