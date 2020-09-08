@@ -95,6 +95,7 @@ username:
 })
 
 const Signup = props =>{
+    console.log({props})
     const [formState, setFormState] = useState({
         username: "",
         phoneNumber: "",
@@ -159,11 +160,13 @@ const Signup = props =>{
                 setPost(res.data);
                 console.log("success", res.data);
                 setUsers([...users, res.data])
-                setFormState({
-                    username: "",
-                    phoneNumber: "",
-                    password: "",
-                });
+                props.history.push("/login")
+                // setFormState({
+                //     username: "",
+                //     phoneNumber: "",
+                //     password: "",
+                // });
+                // props.history.push(`/login`)
             })
             .catch(err => {
                 console.log(err.res);
